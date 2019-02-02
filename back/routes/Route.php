@@ -26,7 +26,7 @@
 			return self::retArr(422, 'missing or invalid fields' . ($field ? ": $field" : NULL));
 		}
 
-		protected static function retNoRes(): array
+		protected static function retNoRes()
 		{
 			return self::retArr(404, 'no results');
 		}
