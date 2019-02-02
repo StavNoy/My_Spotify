@@ -1,4 +1,23 @@
-<div>
-    <p>id = {{id}}</p>
-    <a href="#!">home</a>
+<div class="shadow album-item col">
+    <div class="album-item-content">
+        <div class="row">
+            <a href="#!/albums/1"><img class="album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
+            <div class="offset-1">
+                <h5>Album title</h5>
+                <p>Artist : <a href="#!/artist/id">Artist name</a></p>
+                <p>Popularity : 42</p>
+                <p>Release : 1970-01-01</p>
+            </div>
+        </div>
+        <div class="album-track-content">
+            <div class="row album-track-item">
+                <svg class="album-track-play" viewBox="0 0 200 200" alt="Play video">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke-width="15" stroke="#000"/>
+                    <polygon points="70, 55 70, 145 145, 100" fill="#000"/>
+                </svg>
+                <p class="album-track-duration">2:42</p>
+                <p class="album-track-title">Ceci est un titre de musique</p>
+            </div>
+        </div>
+    </div>
 </div>

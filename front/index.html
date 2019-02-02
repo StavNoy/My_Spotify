@@ -26,7 +26,7 @@
 
 <body ng-app="MySpotify">
     
-    <div id="header-nav" class="container-fluid bg-secondary">
+    <div id="header-nav" class="container-fluid bg-secondary" ng-controller="HeaderNavCtrl">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand text-light" href="#">My Spotify</a>
@@ -48,8 +48,14 @@
                                         <input type="text" class="form-control form-control-sm" id="album" placeholder="Album Name">
                                     </div>
                                     <div class="form-group">
+                                        <label class="text-input" for="music">Music : </label>
+                                        <input type="text" class="form-control form-control-sm" id="music" placeholder="Music Name">
+                                    </div>
+                                    <div class="form-group">
                                         <label class="text-input" for="genre">Genre : </label>
-                                        <input type="text" class="form-control form-control-sm" id="genre" placeholder="Genre">
+                                        <select name="genre" id="">
+
+                                        </select>
                                     </div>
                                      <button type="submit" class="btn btn-primary mb-2">Search</button>
                                 </form>

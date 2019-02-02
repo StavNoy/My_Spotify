@@ -4,10 +4,16 @@ body {
     background-color: rgb(200, 200, 200) !important;
 }
 
+.shadow {
+    box-shadow:-1px 1px 10px 1px rgba(0,0,0,.1);
+}
+
+
+
 /* HEADER */
 
 #header-nav {
-    box-shadow:-1px 1px 10px 1px rgba(0,0,0,.3)
+    box-shadow:-1px 1px 10px 1px rgba(0,0,0,.3);
 }
 
 .text-input {
@@ -16,4 +22,108 @@ body {
 
 .dropdown-menu {
     width: 250%;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover {
+    background-color: #fff !important;
+    color: #343a40 !important;
+}
+
+
+
+/* HOME VIEW */
+
+#random-album-content {
+    margin-top: 3em;
+    justify-content: space-around;
+}
+
+.random-album-item {
+    border: 1px solid #a1a1a1;
+    background-color: #e6e6e6;
+    margin: 1em;
+    border-radius: .1em;
+    -webkit-border-radius: .1em;
+    -moz-border-radius: .1em;
+    -ms-border-radius: .1em;
+    -o-border-radius: .1em;
+}
+
+.random-album-item-content {
+    padding: .7em;
+}
+
+.random-album-item-content p {
+    margin-bottom: 0;
+}
+
+.random-album-item-pic {
+    width: 100px;
+    height: 100px;
+}
+
+
+
+/* ALBUM VIEW */
+
+.album-item {
+    border: 1px solid #a1a1a1;
+    background-color: #e6e6e6;
+    margin: 1em;
+    margin-top: 2em;
+    border-radius: .1em;
+    -webkit-border-radius: .1em;
+    -moz-border-radius: .1em;
+    -ms-border-radius: .1em;
+    -o-border-radius: .1em;
+}
+
+.album-item-content {
+    padding: .7em;
+}
+
+.album-item-content h5 {
+    margin-bottom: 1em;
+}
+
+.album-item-content p {
+    margin: 0;
+}
+
+.album-track-content {
+    margin-top: 2em;
+}
+
+.album-track-item:first-child {
+    border-top:1px solid #a1a1a1;
+    border-bottom:1px solid #a1a1a1;
+}
+
+.album-track-item {
+    border-bottom:1px solid #a1a1a1;
+    padding: .3em 2em;
+    display: flex;
+    align-items: center;
+}
+
+.album-track-play {
+    width: 40px;
+    height: 40px;
+    margin-right: 2em;
+}
+
+.album-track-play:hover {
+    cursor: pointer;
+}
+
+.album-track-duration {
+    padding-right: 1.5em;
+    border-right: 1px solid #a1a1a1;
+}
+
+.album-track-title {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border-right: 1px solid #a1a1a1;
 }
