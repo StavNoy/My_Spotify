@@ -39,7 +39,7 @@
 				return ((int) $inputs['id']) ? ('SELECT * FROM artists WHERE id = ' . (int) $inputs['id']) : NULL;
 			}
 			$limitStr = self::makeLimitString($inputs);
-			return ($limitStr === NULL) ? "SELECT * FROM artists $limitStr" : NULL;
+			return ($limitStr === NULL) ? "SELECT id, name, description, photo FROM artists $limitStr" : NULL;
 		}
 
 
