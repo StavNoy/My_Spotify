@@ -17,10 +17,12 @@
 			return self::retArr(200, $albums);
 		}
 
+
+
 		private static function addGenre(PDO $pdo, array &$albums): bool
 		{
 			$sth = $pdo->prepare('SELECT id, name FROM genres g JOIN genres_albums ga ON g.id = ga.genre_id WHERE album_id = ?');
-			foreach ($albums as $album)
+			foreach ($albums as &$album)
 			{
 				if (!$sth->execute($albums['id']))
 				{

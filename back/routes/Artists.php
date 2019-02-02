@@ -44,7 +44,7 @@
 		private static function addAlbums(PDO $pdo, array &$artists): bool
 		{
 			$sth = $pdo->prepare('SELECT id, name FROM albums WHERE artist_id = ?');
-			foreach ($artists as $artist)
+			foreach ($artists as &$artist)
 			{
 				if (!$sth->execute($artists['id']))
 				{
