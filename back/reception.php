@@ -49,15 +49,9 @@
 	{
 		try
 		{
-<<<<<<< HEAD
-			$pdo = new PDO('mysql:host=localhost;dbname=my_spotify;charset=utf8mb4', 'morty', 'goto');
-			$cleaned = cleanInputs($_GET);
-			$response = switchGet($pdo, $cleaned) ?? [404, 'Unknown request'];
-=======
-			$pdo = new PDO('mysql:host=localhost;dbname=database_music;charset=utf8mb4', 'root', '');
+			$pdo = new PDO('mysql:host=localhost;dbname=database_music;charset=utf8mb4', 'root', '', [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
 			$cleaned = cleanInputs($_GET);
 			$response = switchGet($pdo, $cleaned) ?? [404, 'unknown request'];
->>>>>>> c65c4be7b74d0d5b2f58d05bc680fe43a5c57ed0
 			outputJSON(...$response);
 		}
 		catch (Exception $e){
