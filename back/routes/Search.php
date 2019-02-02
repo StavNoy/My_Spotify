@@ -25,7 +25,7 @@
 
 		private static function isEmpty(&$var): bool
 		{
-			return !empty($var) || (empty($var) && $var !== '0');
+			return empty($var) && $var !== '0';
 		}
 
 		private static function searchTracks(PDO $pdo, string $track, $album = FALSE, $artist = FALSE, int $genre = 0): array
