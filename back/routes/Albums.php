@@ -13,7 +13,7 @@
 			{
 				return self::retParamErr();
 			}
-			$sth = $pdo->query(self::BASE_QUERY);
+			$sth = $pdo->query($querStr);
 			if (!$sth)
 			{
 				return self::retQuerryErr();
