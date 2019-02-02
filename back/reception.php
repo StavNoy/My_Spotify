@@ -10,7 +10,7 @@
 		die(json_encode([
 			'data' => $data,
 			'status' => $status
-		]));
+		], JSON_NUMERIC_CHECK));
 	}
 
 	function cleanInputs(array $inputs): array
