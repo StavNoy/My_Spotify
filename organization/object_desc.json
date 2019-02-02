@@ -1,39 +1,119 @@
 // artistes:
-{
-  "id": 7,
-  "name": "A_Rival",
-  "description": "bla bla",
-  "bio": "bla bla",
-  "photo": "http://some.url/pat/to/photo.jpg",
-  "albums": [
+  //list
+  [
 	{
 	  "id": 7,
-	  "name": "bla",
-	},
-	{
-	  "id": 75,
-	  "name": "bla 2: the blabenning"
+	  "name": "A_Rival",
+	  "description": "bla bla",
+	  "photo": "http://some.url/pat/to/photo.jpg"
 	}
-  ],
-}
+  ]
+
+  //un par id
+  {
+	"id": 7,
+	"name": "A_Rival",
+	"description": "bla bla",
+	"bio": "bla bla",
+	"photo": "http://some.url/pat/to/photo.jpg",
+	"albums": [
+	  {
+		"id": 7,
+		"name": "bla"
+	  },
+	  {
+		"id": 75,
+		"name": "bla 2: the blabenning"
+	  }
+	]
+  }
 
 //albums
-{
-  "id": 3,
-  "name": "bla",
-  "cover": 'http://some.url/img.png',
-  "cover_small": 'http://other.url/img.png',
-  "release_date": '1234/12/12',
-  "popularity": 75,
-  "genre": [
+
+  //list
+  [
 	{
-	  "id": 6,
-	  "name": "asdsad"
+	  "id": 3,
+	  "name": "bla",
+	  "cover_small": 'http://other.url/img.png',
+	  "release_date": '1234/12/12',
+	  "popularity": 75,
+	  "genre": [
+		{
+		  "id": 6,
+		  "name": "asdsad"
+		},
+		{
+		  "id": 7,
+		  "name": "kbdvk"
+		}
+	  ],
+	  "tracks_number": 5
+	}
+  ]
+
+  //par id
+  {
+	"id": 3,
+	"name": "bla",
+	"cover": 'http://some.url/img.png',
+	"cover_small": 'http://other.url/img.png',
+	"release_date": '1234/12/12',
+	"popularity": 75,
+	"genre": [
+	  {
+		"id": 6,
+		"name": "asdsad"
+	  },
+	  {
+		"id": 7,
+		"name": "kbdvk"
+	  }
+	],
+	"tracks": [
+	  {
+		"id": 8,
+		"track_no": 1,
+		"name": "bla",
+		"duration": 210,
+
+	  },
+	  {
+		"id": 54,
+		"track_no": 2,
+		"name": "blabla",
+		"duration": 350
+	  }
+	]
+  }
+
+// track
+  //par id
+  {
+	"id": 3,
+	"name": "jgcvjh",
+	"track_no": 8,
+	"duration": 875,
+	"mp3": "url",
+	"album": {
+	  "id": 3,
+	  "name": "fef",
+	  "cover_small": "http://other.url/img.png"
 	},
+	"artist": {
+	  "id": 34,
+	  "name": "feknwfe"
+	}
+
+  }
+
+
+//genre
+  //list
+  [
 	{
-	  "id": 7,
-	  "name": "kbdvk"
-	},
-  ],
-  "nombre_tracks": 5,
-}
+	  "id": 4,
+	  "name": 43,
+	  "albums_number": 54
+	}
+  ]

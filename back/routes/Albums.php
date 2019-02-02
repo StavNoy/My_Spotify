@@ -2,7 +2,7 @@
 
 	class Albums extends Route
 	{
-		private const BASE_QUERY = 'SELECT al.id, al.name, cover, cover_small, release_date, popularity, COUNT(t.id) AS nombre_tracks ' .
+		private const BASE_QUERY = 'SELECT al.id, al.name, cover, cover_small, release_date, popularity, COUNT(t.id) AS tracks_number ' .
 									'FROM albums al JOIN tracks t ON al.id = t.album_id ' .
 									'GROUP BY t.album_id ';
 
@@ -52,20 +52,6 @@
 			return " LIMIT $start, $limit ";
 		}
 
-
-
-
-
-
-		public static function byId(PDO $pdo, array $inputs): array
-		{
-			if (!isset($inputs['id']) || !(int) $inputs['id'])
-			{
-				return self::retParamErr(' album id');
-			}
-			$sth = $pdo->query(self::BASE_QUERY . ' WHERE al.id = ' . $inputs['id']);
-
-		}
 
 
 		/**
