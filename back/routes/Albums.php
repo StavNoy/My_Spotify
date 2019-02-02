@@ -2,10 +2,11 @@
 
 	class Albums extends Route
 	{
-		private const LIST_QUERY = "SELECT al.id, al.name, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
+		private const LIST_QUERY = "SELECT al.id, artist_id, al.name, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
 									'FROM albums al JOIN tracks t ON al.id = t.album_id ' .
 									'GROUP BY t.album_id ';
-		private const SINGLE_QUERY = "SELECT al.id, al.name, cover, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity FROM albums al WHERE al.id = ";
+
+		private const SINGLE_QUERY = "SELECT al.id, artist_id, al.name, cover, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity FROM albums al WHERE al.id = ";
 
 		public static function main(PDO $pdo, array $inputs): array
 		{
@@ -40,8 +41,17 @@
 			if (isset($inputs['id'])) {
 				return ((int) $inputs['id']) ? (self::SINGLE_QUERY . (int) $inputs['id']) : NULL;
 			}
+			$queryStr = self::LIST_QUERY;
+			if (isset($inputs['artist_id']))
+			{
+				if (!(int) $inputs['artist_id'])
+				{
+					return NULL;
+				}
+				$queryStr .= ' HAVING artist_id = ' . $inputs['artist_id'];
+			}
 			$limitStr = self::handleLimitString($pdo, $inputs);
-			return ($limitStr === NULL) ? self::LIST_QUERY . $limitStr : NULL;
+			return ($limitStr === NULL) ? $queryStr . $limitStr : NULL;
 		}
 
 
