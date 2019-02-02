@@ -10,7 +10,10 @@
 				return self::retQuerryErr();
 			}
 			$artists = $artSttmnt->fetchAll(PDO::FETCH_ASSOC);
-			self::addAlbums($pdo, $artists);
+			if (self::addAlbums($pdo, $artists))
+			{
+				return self::retQuerryErr();
+			}
 			return self::retArr(200, $artists);
 		}
 
@@ -26,19 +29,30 @@
 				return self::retQuerryErr();
 			}
 			$toPass = [$sth->fetch(PDO::FETCH_ASSOC)];
-			self::addAlbums($pdo, $toPass);
-			self::retArr(200, ...$toPass);
+			if (self::addAlbums($pdo, $toPass))
+			{
+				return self::retQuerryErr();
+			}
+			return self::retArr(200, ...$toPass);
 		}
 
 
-		private static function addAlbums(PDO $pdo, array &$artists): void
+		/**
+		 * @param array[] $artists of fetched artist associative arrays
+		 * @return bool of success
+		 */
+		private static function addAlbums(PDO $pdo, array &$artists): bool
 		{
 			$sth = $pdo->prepare('SELECT id, name FROM albums WHERE artist_id = ?');
 			foreach ($artists as $artist)
 			{
-				$sth->execute($artists['id']);
+				if (!$sth->execute($artists['id']))
+				{
+					return FALSE;
+				}
 				$artist['albums'] = $sth->fetchAll(PDO::FETCH_ASSOC);
 			}
+			return TRUE;
 		}
 	}
 

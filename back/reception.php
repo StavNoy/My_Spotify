@@ -29,6 +29,10 @@
 			case 'artistes':
 				return Artists::getAll($pdo);
 			case 'artiste':
+				return Artists::byID($pdo, $cleaned);
+			case 'albums':
+				return Albums::getAll($pdo);
+			case ''
 
 			default:
 				return NULL;

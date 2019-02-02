@@ -1,0 +1,39 @@
+// artistes:
+{
+  "id": 7,
+  "name": "A_Rival",
+  "description": "bla bla",
+  "bio": "bla bla",
+  "photo": "http://some.url/pat/to/photo.jpg",
+  "albums": [
+	{
+	  "id": 7,
+	  "name": "bla",
+	},
+	{
+	  "id": 75,
+	  "name": "bla 2: the blabenning"
+	}
+  ],
+}
+
+//albums
+{
+  "id": 3,
+  "name": "bla",
+  "cover": 'http://some.url/img.png',
+  "cover_small": 'http://other.url/img.png',
+  "release_date": '1234/12/12',
+  "popularity": 75,
+  "genre": [
+	{
+	  "id": 6,
+	  "name": "asdsad"
+	},
+	{
+	  "id": 7,
+	  "name": "kbdvk"
+	},
+  ],
+  "nombre_tracks": 5,
+}
