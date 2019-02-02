@@ -127,3 +127,7 @@ body {
     padding-right: 1.5em;
     border-right: 1px solid #a1a1a1;
 }
+
+.album-track-timeline {
+    padding-left: 1.5em;
+}

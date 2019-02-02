@@ -15,22 +15,20 @@
 			{
 				return self::retQuerryErr();
 			}
-			$artists = $sth->fetchAll(PDO::FETCH_ASSOC);
+			$artists = $sth->fetchAll();
 			if (!$artists)
 			{
 				return self::retNoRes();
 			}
 			if (isset($inputs['id']))
 			{
-				if (!self::addAlbums($pdo, $wrapper_arr))
+				$artists = $artists[0];
+				if (!self::addAlbums($pdo, $artists))
 				{
 					return self::retQuerryErr();
 				}
-				$data = $artists[0];
-			} else {
-				$data = $artists;
 			}
-			return self::retArr(200, $data);
+			return self::retGood($artists);
 		}
 
 		private static function makeQueryStr(array $inputs): ?string
@@ -39,7 +37,7 @@
 				return ((int) $inputs['id']) ? ('SELECT * FROM artists WHERE id = ' . (int) $inputs['id']) : NULL;
 			}
 			$limitStr = self::makeLimitString($inputs);
-			return ($limitStr === NULL) ? "SELECT * FROM artists $limitStr" : NULL;
+			return ($limitStr === NULL) ? "SELECT id, name, description, photo FROM artists $limitStr" : NULL;
 		}
 
 
@@ -54,7 +52,7 @@
 			{
 				return FALSE;
 			}
-			$artist['albums'] = $sth->fetch(PDO::FETCH_ASSOC);
+			$artist['albums'] = $sth->fetchAll();
 			return TRUE;
 		}
 	}

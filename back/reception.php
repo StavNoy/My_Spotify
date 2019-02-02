@@ -10,7 +10,7 @@
 		die(json_encode([
 			'data' => $data,
 			'status' => $status
-		]));
+		], JSON_NUMERIC_CHECK));
 	}
 
 	function cleanInputs(array $inputs): array
@@ -30,7 +30,8 @@
 				return Artists::main($pdo, $cleaned);
 			case 'albums':
 				return Albums::main($pdo, $cleaned);
-			// case ''
+			case 'track':
+				return Tracks::byId($pdo, $cleaned);
 
 			default:
 				return NULL;
@@ -49,7 +50,11 @@
 	{
 		try
 		{
+<<<<<<< HEAD
 			$pdo = new PDO('mysql:host=localhost;dbname=my_spotify;charset=utf8mb4', 'morty', 'goto');
+=======
+			$pdo = new PDO('mysql:host=localhost;dbname=database_music;charset=utf8mb4', 'root', '', [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+>>>>>>> 02ff542b53603bb7f437ce12480d266346b6bc1e
 			$cleaned = cleanInputs($_GET);
 			$response = switchGet($pdo, $cleaned) ?? [404, 'unknown request'];
 			outputJSON(...$response);

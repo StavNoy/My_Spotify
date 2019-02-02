@@ -30,10 +30,11 @@
 
 //albums
 
-  //list
+  //list / by artist_id
   [
 	{
 	  "id": 3,
+	  "artist_id": 6,
 	  "name": "bla",
 	  "cover_small": 'http://other.url/img.png',
 	  "release_date": '1234/12/12',
@@ -55,6 +56,7 @@
   //par id
   {
 	"id": 3,
+	"artist_id": 6,
 	"name": "bla",
 	"cover": 'http://some.url/img.png',
 	"cover_small": 'http://other.url/img.png',
@@ -75,7 +77,7 @@
 		"id": 8,
 		"track_no": 1,
 		"name": "bla",
-		"duration": 210,
+		"duration": 210
 
 	  },
 	  {
@@ -95,16 +97,11 @@
 	"track_no": 8,
 	"duration": 875,
 	"mp3": "url",
-	"album": {
-	  "id": 3,
-	  "name": "fef",
-	  "cover_small": "http://other.url/img.png"
-	},
-	"artist": {
-	  "id": 34,
-	  "name": "feknwfe"
-	}
-
+	"album_id": 3,
+	"album_name": "fef",
+	"album_cover_small": "http://other.url/img.png"
+	"artist_id": 34,
+	"artist_name": "feknwfe"
   }
 
 
