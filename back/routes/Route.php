@@ -1,5 +1,6 @@
 <?php
 
+	/** all passed PDOs are expected to set default to FETCH_ASSOC */
 	class Route
 	{
 

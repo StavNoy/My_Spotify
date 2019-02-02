@@ -15,7 +15,7 @@
 			{
 				return self::retQuerryErr();
 			}
-			$artists = $sth->fetchAll(PDO::FETCH_ASSOC);
+			$artists = $sth->fetchAll();
 			if (!$artists)
 			{
 				return self::retNoRes();
@@ -52,7 +52,7 @@
 			{
 				return FALSE;
 			}
-			$artist['albums'] = $sth->fetch(PDO::FETCH_ASSOC);
+			$artist['albums'] = $sth->fetchAll();
 			return TRUE;
 		}
 	}

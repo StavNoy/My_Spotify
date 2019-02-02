@@ -19,7 +19,7 @@
 			{
 				return self::retQuerryErr();
 			}
-			$albums = $sth->fetchAll(PDO::FETCH_ASSOC);
+			$albums = $sth->fetchAll();
 			if (!$albums)
 			{
 				return self::retNoRes();
@@ -27,7 +27,7 @@
 			if (isset($inputs['id']))
 			{
 				$albums = $albums[0];
-				if (self::addGenres($pdo, $albums))
+				if (!self::addGenres($pdo, $albums) || !self::addTracks($pdo, $albums))
 				{
 					return self::retQuerryErr();
 				}
@@ -69,36 +69,22 @@
 			{
 				return FALSE;
 			}
-			$albums['genre'] = $sth->fetchAll(PDO::FETCH_ASSOC);
+			$album['genre'] = $sth->fetchAll();
+			return TRUE;
+		}
+
+		/**
+		 * @param array[] $album of fetched album (associative)
+		 * @return bool of success
+		 */
+		private static function addTracks(PDO $pdo, array &$album): bool
+		{
+			$sth = $pdo->query('SELECT id, track_no, name, duration FROM tracks WHERE album_id = ' . $album['id']);
+			if (!$sth)
+			{
+				return FALSE;
+			}
+			$album['tracks'] = $sth->fetchAll();
 			return TRUE;
 		}
 	}
-
-
-
-/*
-	 Dans les albums récupérés:
-		Leurs musiques
-		Leur genre
-		Le nombre de tracks
-		La photo de l’album
-		Leur popularité
-		Leur année de création
-
-
-//albums
-{
-  "id": 3,
-  "name": "bla",
-  "cover": 'http://some.url/img.png',
-  "cover_small": 'http://other.url/img.png',
-  "release_date": '1234/12/12',
-  "popularity": 75,
-  "genre": {
-	"id": 6,
-	"name": "asdsad"
-  },
-  "nombre_tracks": 5,
-}
-
-*/
