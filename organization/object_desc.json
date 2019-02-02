@@ -90,23 +90,18 @@
   }
 
 // track
-  //par id
+  //par id //todo inform
   {
 	"id": 3,
 	"name": "jgcvjh",
 	"track_no": 8,
 	"duration": 875,
 	"mp3": "url",
-	"album": {
-	  "id": 3,
-	  "name": "fef",
-	  "cover_small": "http://other.url/img.png"
-	},
-	"artist": {
-	  "id": 34,
-	  "name": "feknwfe"
-	}
-
+	"album_id": 3,
+	"album_name": "fef",
+	"album_cover_small": "http://other.url/img.png"
+	"artist_id": 34,
+	"artist_name": "feknwfe"
   }
 
 

@@ -30,7 +30,8 @@
 				return Artists::main($pdo, $cleaned);
 			case 'albums':
 				return Albums::main($pdo, $cleaned);
-			case ''
+			case 'track':
+				return Tracks::byId($pdo, $cleaned);
 
 			default:
 				return NULL;
