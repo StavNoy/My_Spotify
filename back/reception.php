@@ -8,7 +8,7 @@
 	{
 		header('Content-Type: application/json');
 		die(json_encode([
-			'data' => $msg,
+			'data' => $data,
 			'status' => $status
 		]));
 	}
@@ -30,7 +30,7 @@
 				return Artists::main($pdo, $cleaned);
 			case 'albums':
 				return Albums::main($pdo, $cleaned);
-			case ''
+			// case ''
 
 			default:
 				return NULL;
@@ -49,9 +49,9 @@
 	{
 		try
 		{
-			$pdo = new PDO('mysql:host=localhost;dbname=database_music;charset=utf8mb4', 'root', '');
-			$cleaned = cleanInputs($_POST);
-			$response = switchGet($pdo, $cleaned) ?? [404, 'unknown request'];
+			$pdo = new PDO('mysql:host=localhost;dbname=my_spotify;charset=utf8mb4', 'morty', 'goto');
+			$cleaned = cleanInputs($_GET);
+			$response = switchGet($pdo, $cleaned) ?? [404, 'Unknown request'];
 			outputJSON(...$response);
 		}
 		catch (Exception $e){

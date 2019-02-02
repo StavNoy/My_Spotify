@@ -7,7 +7,7 @@
 
 		protected static function retArr(int $status, $data): array
 		{
-			return ['status' => $status, 'data' => $data];
+			return [$status, $data];
 		}
 
 		protected static function retQuerryErr()
