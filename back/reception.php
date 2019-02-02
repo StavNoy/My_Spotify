@@ -8,7 +8,7 @@
 	{
 		header('Content-Type: application/json');
 		die(json_encode([
-			'data' => $msg,
+			'data' => $data,
 			'status' => $status
 		]));
 	}
@@ -50,7 +50,7 @@
 		try
 		{
 			$pdo = new PDO('mysql:host=localhost;dbname=database_music;charset=utf8mb4', 'root', '');
-			$cleaned = cleanInputs($_POST);
+			$cleaned = cleanInputs($_GET);
 			$response = switchGet($pdo, $cleaned) ?? [404, 'unknown request'];
 			outputJSON(...$response);
 		}
