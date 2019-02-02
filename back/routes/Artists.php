@@ -2,31 +2,32 @@
 
 	class Artists extends Route
 	{
-		public static function list(PDO $pdo): array
+		public static function getAll(PDO $pdo): array
 		{
 			$artSttmnt = $pdo->query('SELECT * FROM artists');
 			if (!$artSttmnt)
 			{
-				return self::retArr(500, 'query error');
+				return self::retQuerryErr();
 			}
 			$artists = $artSttmnt->fetchAll(PDO::FETCH_ASSOC);
 			self::addAlbums($pdo, $artists);
 			return self::retArr(200, $artists);
 		}
 
-		public static function getOne(PDO $pdo, array $inputs): array
+		public static function byID(PDO $pdo, array $inputs): array
 		{
 			if (!isset($inputs['id']) || (int) $inputs['id'])
 			{
-				self::retArr(422, 'missing or invalid fields: artist id');
+				return self::retParamErr('artist id');
 			}
 			$sth = $pdo->query('SELECT * from artists WHERE id = ' . (int) $inputs['id']);
-			if (!sth)
+			if (!$sth)
 			{
-				self::retArr(500, 'query error');
-
+				return self::retQuerryErr();
 			}
-
+			$toPass = [$sth->fetch(PDO::FETCH_ASSOC)];
+			self::addAlbums($pdo, $toPass);
+			self::retArr(200, ...$toPass);
 		}
 
 

@@ -27,7 +27,7 @@
 		switch ($cleaned['request'])
 		{
 			case 'artistes':
-				return Artists::list($pdo);
+				return Artists::getAll($pdo);
 			case 'artiste':
 
 			default:
@@ -50,7 +50,7 @@
 			$pdo = new PDO('mysql:host=localhost;dbname=database_music;charset=utf8mb4', 'root', '');
 			$cleaned = cleanInputs($_POST);
 			$response = switchGet($pdo, $cleaned) ?? [404, 'unknown request'];
-			outputJSON(... $response);
+			outputJSON(...$response);
 		}
 		catch (Exception $e){
 			outputJSON(500, 'server error');
