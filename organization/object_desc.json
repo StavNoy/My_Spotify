@@ -104,6 +104,18 @@
 	"artist_name": "feknwfe"
   }
 
+  //search
+  [
+	{
+	  "id": 1,
+	  "name": 'sd',
+	  "album_id": 3,
+	  "album_name": "sadsa",
+	  "artist_id": 3,
+	  "artist_name": "dsad",
+	}
+  ]
+
 
 //genre
   //list
