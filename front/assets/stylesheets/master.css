@@ -1,0 +1,19 @@
+/* GENERAL */
+
+body {
+    background-color: rgb(200, 200, 200) !important;
+}
+
+/* HEADER */
+
+#header-nav {
+    box-shadow:-1px 1px 10px 1px rgba(0,0,0,.3)
+}
+
+.text-input {
+    font-size: 1em;
+}
+
+.dropdown-menu {
+    width: 250%;
+}
