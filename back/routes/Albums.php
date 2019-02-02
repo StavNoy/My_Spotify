@@ -2,24 +2,77 @@
 
 	class Albums extends Route
 	{
-		public static function getAll(PDO $pdo)
+		private const BASE_QUERY = 'SELECT al.id, al.name, cover, cover_small, release_date, popularity, COUNT(t.id) AS nombre_tracks ' .
+									'FROM albums al JOIN tracks t ON al.id = t.album_id ' .
+									'GROUP BY t.album_id ';
+
+		public static function main(PDO $pdo, array $inputs): array
 		{
-			$sth = $pdo->query('SELECT al.id, al.name, cover, cover_small,release_date, popularity, COUNT(t.id) AS nombre_tracks FROM albums al JOIN tracks t ON al.id = t.album_id GROUP BY t.album_id');
+			$querStr = self::makeQueryStr($pdo, $inputs);
+			if (!$querStr)
+			{
+				return self::retParamErr();
+			}
+			$sth = $pdo->query(self::BASE_QUERY);
 			if (!$sth)
 			{
 				return self::retQuerryErr();
 			}
 			$albums = $sth->fetchAll(PDO::FETCH_ASSOC);
-			if (self::addGenre($pdo, $albums))
+			if (!$albums)
+			{
+				return self::retNoRes();
+			}
+			if (self::addGenres($pdo, $albums))
 			{
 				return self::retQuerryErr();
 			}
-			return self::retArr(200, $albums);
+			$data = isset($inputs['id']) ? $albums[0] : $albums;
+			return self::retArr(200, $data);
+		}
+
+		private static function makeQueryStr(PDO $pdo, array $inputs): ?string
+		{
+			if (isset($inputs['id'])) {
+				return ((int) $inputs['id']) ? (self::BASE_QUERY . ' WHERE al.id = ' . (int) $inputs['id']) : NULL;
+			}
+			$limitStr = self::handleLimitString($pdo, $inputs);
+			return ($limitStr === NULL) ? self::BASE_QUERY . $limitStr : NULL;
+		}
+
+
+		private static function handleLimitString(PDO $pdo, array $inputs): ?string
+		{
+			if (!isset($inputs['start']) || $inputs['start'] !== 'random')
+			{
+				return self::makeLimitString($inputs);
+			}
+			$limit = (int) ($inputs['limit'] ?? 10);
+			$start = rand(1, $pdo->query('SELECT COUNT(*) FROM albums')->fetchColumn() - $limit);
+			return " LIMIT $start, $limit ";
 		}
 
 
 
-		private static function addGenre(PDO $pdo, array &$albums): bool
+
+
+
+		public static function byId(PDO $pdo, array $inputs): array
+		{
+			if (!isset($inputs['id']) || !(int) $inputs['id'])
+			{
+				return self::retParamErr(' album id');
+			}
+			$sth = $pdo->query(self::BASE_QUERY . ' WHERE al.id = ' . $inputs['id']);
+
+		}
+
+
+		/**
+		 * @param array[] $albums of fetched albums associative arrays
+		 * @return bool of success
+		 */
+		private static function addGenres(PDO $pdo, array &$albums): bool
 		{
 			$sth = $pdo->prepare('SELECT id, name FROM genres g JOIN genres_albums ga ON g.id = ga.genre_id WHERE album_id = ?');
 			foreach ($albums as &$album)

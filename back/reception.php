@@ -27,11 +27,9 @@
 		switch ($cleaned['request'])
 		{
 			case 'artistes':
-				return Artists::getAll($pdo);
-			case 'artiste':
-				return Artists::byID($pdo, $cleaned);
+				return Artists::main($pdo, $cleaned);
 			case 'albums':
-				return Albums::getAll($pdo);
+				return Albums::main($pdo, $cleaned);
 			case ''
 
 			default:

@@ -2,38 +2,40 @@
 
 	class Artists extends Route
 	{
-		public static function getAll(PDO $pdo): array
-		{
-			$artSttmnt = $pdo->query('SELECT * FROM artists');
-			if (!$artSttmnt)
-			{
-				return self::retQuerryErr();
-			}
-			$artists = $artSttmnt->fetchAll(PDO::FETCH_ASSOC);
-			if (self::addAlbums($pdo, $artists))
-			{
-				return self::retQuerryErr();
-			}
-			return self::retArr(200, $artists);
-		}
 
-		public static function byID(PDO $pdo, array $inputs): array
+		public static function main(PDO $pdo, array $inputs): array
 		{
-			if (!isset($inputs['id']) || (int) $inputs['id'])
+			$queryStr = self::makeQueryStr($inputs);
+			if (!$inputs)
 			{
-				return self::retParamErr('artist id');
+				return self::retParamErr();
 			}
-			$sth = $pdo->query('SELECT * from artists WHERE id = ' . (int) $inputs['id']);
+			$sth = $pdo->query($queryStr);
 			if (!$sth)
 			{
 				return self::retQuerryErr();
 			}
-			$toPass = [$sth->fetch(PDO::FETCH_ASSOC)];
-			if (self::addAlbums($pdo, $toPass))
+			$artists = $sth->fetchAll(PDO::FETCH_ASSOC);
+			if (!$artists)
+			{
+				return self::retNoRes();
+			}
+			if (!self::addAlbums($pdo, $wrapper_arr))
 			{
 				return self::retQuerryErr();
 			}
-			return self::retArr(200, ...$toPass);
+			$data = isset($inputs['id']) ? $artists[0] : $artists;
+			return self::retArr(200, $data);
+		}
+
+		private static function makeQueryStr(array $inputs): ?string
+		{
+			$queryStr = 'SELECT * FROM artists ';
+			if (isset($inputs['id'])) {
+				return ((int) $inputs['id']) ? ($queryStr . 'WHERE id = ' . (int) $inputs['id']) : NULL;
+			}
+			$limitStr = self::makeLimitString($inputs);
+			return ($limitStr === NULL) ? $queryStr . $limitStr : NULL;
 		}
 
 
