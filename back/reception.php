@@ -32,6 +32,8 @@
 				return Albums::main($pdo, $cleaned);
 			case 'track':
 				return Tracks::byId($pdo, $cleaned);
+			case 'search':
+				return Search::main($pdo, $cleaned);
 
 			default:
 				return NULL;
