@@ -26,9 +26,46 @@
 
 <body ng-app="MySpotify">
     
-    
+    <div id="header-nav" class="container-fluid bg-secondary">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand text-light" href="#">My Spotify</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <form class="dropdown-item">
+                                    <div class="form-group">
+                                        <label class="text-input" for="artist">Artist : </label>
+                                        <input type="text" class="form-control form-control-sm" id="artist" placeholder="Artist Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-input" for="album">Album : </label>
+                                        <input type="text" class="form-control form-control-sm" id="album" placeholder="Album Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-input" for="genre">Genre : </label>
+                                        <input type="text" class="form-control form-control-sm" id="genre" placeholder="Genre">
+                                    </div>
+                                     <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
 
-    <div ng-view></div>
+    <div class="container-fluid">
+        <div class="container">
+            <div ng-view></div>
+        </div>
+    </div>
 
 </body>
 
