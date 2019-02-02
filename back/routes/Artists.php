@@ -22,15 +22,13 @@
 			}
 			if (isset($inputs['id']))
 			{
-				if (!self::addAlbums($pdo, $wrapper_arr))
+				$artists = $artists[0];
+				if (!self::addAlbums($pdo, $artists))
 				{
 					return self::retQuerryErr();
 				}
-				$data = $artists[0];
-			} else {
-				$data = $artists;
 			}
-			return self::retArr(200, $data);
+			return self::retArr(200, $artists);
 		}
 
 		private static function makeQueryStr(array $inputs): ?string
