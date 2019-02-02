@@ -10,7 +10,7 @@
 		die(json_encode([
 			'data' => $data,
 			'status' => $status
-		]));
+		], JSON_NUMERIC_CHECK));
 	}
 
 	function cleanInputs(array $inputs): array
@@ -32,6 +32,8 @@
 				return Albums::main($pdo, $cleaned);
 			case 'track':
 				return Tracks::byId($pdo, $cleaned);
+			case 'search':
+				return Search::main($pdo, $cleaned);
 
 			default:
 				return NULL;

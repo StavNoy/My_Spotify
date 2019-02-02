@@ -4,12 +4,6 @@
 	{
 		public static function main(PDO $pdo, array $inputs): array
 		{
-
-			return self::getList($pdo, $inputs);
-		}
-
-		private static function getList(PDO $pdo, array $inputs): array
-		{
 			$limitStr = self::makeLimitString($inputs);
 			if ($limitStr === NULL)
 			{
@@ -27,5 +21,4 @@
 			}
 			return self::retGood($genres);
 		}
-
 	}

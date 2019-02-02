@@ -114,3 +114,16 @@
 	  "albums_number": 54
 	}
   ]
+
+/*
+	Search:
+
+	  fields:
+		genre;  id
+		others: string
+
+	  results:
+		track [any] -> track
+		genre || album [artist, genre] -> albums
+		artist [genres] -> artist
+*/
