@@ -20,48 +20,41 @@
 			{
 				return self::retNoRes();
 			}
-			if (!self::addAlbums($pdo, $wrapper_arr))
+			if (isset($inputs['id']))
 			{
-				return self::retQuerryErr();
+				if (!self::addAlbums($pdo, $wrapper_arr))
+				{
+					return self::retQuerryErr();
+				}
+				$data = $artists[0];
+			} else {
+				$data = $artists;
 			}
-			$data = isset($inputs['id']) ? $artists[0] : $artists;
 			return self::retArr(200, $data);
 		}
 
 		private static function makeQueryStr(array $inputs): ?string
 		{
-			$queryStr = 'SELECT * FROM artists ';
 			if (isset($inputs['id'])) {
-				return ((int) $inputs['id']) ? ($queryStr . 'WHERE id = ' . (int) $inputs['id']) : NULL;
+				return ((int) $inputs['id']) ? ('SELECT * FROM artists WHERE id = ' . (int) $inputs['id']) : NULL;
 			}
 			$limitStr = self::makeLimitString($inputs);
-			return ($limitStr === NULL) ? $queryStr . $limitStr : NULL;
+			return ($limitStr === NULL) ? "SELECT * FROM artists $limitStr" : NULL;
 		}
 
 
 		/**
-		 * @param array[] $artists of fetched artist associative arrays
+		 * @param array $artist of fetched artist (associative)
 		 * @return bool of success
 		 */
-		private static function addAlbums(PDO $pdo, array &$artists): bool
+		private static function addAlbums(PDO $pdo, array &$artist): bool
 		{
-			$sth = $pdo->prepare('SELECT id, name FROM albums WHERE artist_id = ?');
-			foreach ($artists as &$artist)
+			$sth = $pdo->query('SELECT id, name FROM albums WHERE artist_id = ' . $artist['id']);
+			if (!$sth)
 			{
-				if (!$sth->execute($artists['id']))
-				{
-					return FALSE;
-				}
-				$artist['albums'] = $sth->fetchAll(PDO::FETCH_ASSOC);
+				return FALSE;
 			}
+			$artist['albums'] = $sth->fetch(PDO::FETCH_ASSOC);
 			return TRUE;
 		}
 	}
-
-
-/*
-	Trouver les artistes et récupérer:
-		• Leur description
-		• Leur biographie
-		• Leurs albums  // id and name
-		• Leurs photos*/
