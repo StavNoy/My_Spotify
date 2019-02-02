@@ -33,7 +33,7 @@
 					return self::retQuerryErr();
 				}
 			}
-			return self::retArr(200, $albums);
+			return self::retGood( $albums);
 		}
 
 		private static function makeQueryStr(PDO $pdo, array $inputs): ?string

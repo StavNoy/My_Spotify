@@ -28,7 +28,7 @@
 					return self::retQuerryErr();
 				}
 			}
-			return self::retArr(200, $artists);
+			return self::retGood($artists);
 		}
 
 		private static function makeQueryStr(array $inputs): ?string

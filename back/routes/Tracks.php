@@ -8,7 +8,7 @@
 			{
 				return self::retParamErr('id');
 			}
-			$trackSth = $pdo->query('SELECT t.id, t.name, track_no, duration, mp3, album_id, ' . 
+			$trackSth = $pdo->query('SELECT t.id, t.name, track_no, duration, mp3, album_id, ' .
 				'al.name AS `album_name`, cover_small AS `album_cover_small`, ' .
 				'artist_id, ar.name AS `artists_name` ' .
 				'FROM tracks t JOIN albums al ON t.album_id = al.id JOIN artists ar ON al.artist_id = ar.id ' .
@@ -22,6 +22,6 @@
 			{
 				return self::retNoRes();
 			}
-			return self::retArr(200, $track);
+			return self::retGood($track);
 		}
 	}
