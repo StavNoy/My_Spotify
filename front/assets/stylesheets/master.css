@@ -135,3 +135,43 @@ body {
 .album-track-timeline {
     padding-left: 1.5em;
 }
+
+
+/* ARTIST VIEW */
+
+.artist-item {
+    border: 1px solid #a1a1a1;
+    background-color: #e6e6e6;
+    margin: 1em;
+    margin-top: 2em;
+    border-radius: .1em;
+    -webkit-border-radius: .1em;
+    -moz-border-radius: .1em;
+    -ms-border-radius: .1em;
+    -o-border-radius: .1em;
+}
+
+.artist-item-content {
+    padding: .7em;
+}
+
+.artist-item-content h5 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.artist-item-content p {
+    margin: 0;
+}
+
+.artist-track-content {
+    margin-top: 2em;
+}
+
+.artist-item-genre {
+    padding-right: .5em;
+}
+
+.artist-bio {
+    margin: 2em auto;
+}
