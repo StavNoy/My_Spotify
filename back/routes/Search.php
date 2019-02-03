@@ -30,7 +30,8 @@
 
 		private static function searchTracks(PDO $pdo, string $track, $album = FALSE, $artist = FALSE, int $genre = 0): array
 		{
-			$sttmnt = 'SELECT t.id, t.name, al.id AS `album_id`, al.name AS `album_name`, ar.id AS `artist_id`, ar.name AS `artist_name` FROM tracks t JOIN albums al ON t.album_id = al.id JOIN artists ar ON al.artist_id = ar.id ';
+			$sttmnt = 'SELECT t.id, t.name, al.id AS `album_id`, al.name AS `album_name`, ar.id AS `artist_id`, ar.name AS `artist_name` ' .
+				'FROM tracks t JOIN albums al ON t.album_id = al.id JOIN artists ar ON al.artist_id = ar.id ';
 			$where = 'WHERE t.name LIKE ? ';
 			$params = ["%$track%"];
 			self::handleFields($where, $params, $sttmnt, $genre, $artist, $album);
@@ -39,7 +40,13 @@
 
 		private static function searchAlbums(PDO $pdo, string $album, $artist = FALSE, int $genre = 0): array
 		{
-			$sttmnt = 'SELECT al.id, al.name, ar.id AS `artist_id`, ar.name AS `artist_name` FROM albums al JOIN artists ar ON al.artist_id = ar.id '
+			$sttmnt = "SELECT al.id, artist_id, al.name, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
+				'FROM albums al JOIN tracks t ON al.id = t.album_id ' ;
+			$where = ' WHERE al.name LIKE ? ';
+			$params = ["%$album%"];
+			self::handleFields($where, $params, $sttmnt, $genre, $artist);
+			$sttmntFull = $sttmnt . $where . ' GROUP BY t.album_id ';
+			return self::prepExecFetch($pdo, $sttmntFull, $params);
 		}
 
 		private static function searchArtist(PDO $pdo, string $artist, int $genre = 0): array
@@ -68,6 +75,16 @@
 
 		private static function prepExecFetch(PDO $pdo, string $sttmnt, array $params): array
 		{
-
+			$sth = $pdo->prepare($sttmnt);
+			if (!$sth || ! $sth->execute($params))
+			{
+				return self::retQuerryErr();
+			}
+			$data = $sth->fetchAll();
+			if (!$data)
+			{
+				return self::retNoRes();
+			}
+			return self::retGood($data);
 		}
 	}

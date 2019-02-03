@@ -30,7 +30,7 @@
 
 //albums
 
-  //list / by artist_id
+  //list / by artist_id / search
   [
 	{
 	  "id": 3,
@@ -39,16 +39,6 @@
 	  "cover_small": 'http://other.url/img.png',
 	  "release_date": '1234/12/12',
 	  "popularity": 75,
-	  "genre": [
-		{
-		  "id": 6,
-		  "name": "asdsad"
-		},
-		{
-		  "id": 7,
-		  "name": "kbdvk"
-		}
-	  ],
 	  "tracks_number": 5
 	}
   ]
@@ -89,6 +79,7 @@
 	]
   }
 
+
 // track
   //par id
   {
@@ -112,7 +103,7 @@
 	  "album_id": 3,
 	  "album_name": "sadsa",
 	  "artist_id": 3,
-	  "artist_name": "dsad",
+	  "artist_name": "dsad"
 	}
   ]
 
