@@ -27,12 +27,12 @@ app.config(($routeProvider) => {
 // Header nav 
 app.controller('HeaderNavCtrl', function ($scope, $http) {
 
-    // $http({
-    //     method: 'GET',
-    //     url: `../back/reception.php?request=genres`
-    // }).then(function successCallback(res) {
-    //     $scope.random = res.data.data;
-    // });
+    $http({
+        method: 'GET',
+        url: `../back/reception.php?request=genres`
+    }).then(function successCallback(res) {
+        $scope.genres = res.data.data;
+    });
 });
 
 // Home page
@@ -84,7 +84,12 @@ app.controller('ArtistCtrl', function ($scope, $http, $routeParams) {
 // List genres
 app.controller('GenresCtrl', function ($scope, $http) {
 
-
+    $http({
+        method: 'GET',
+        url: `../back/reception.php?request=genres`
+    }).then(function successCallback(res) {
+        $scope.genres = res.data.data;
+    });
 });
 
 // Zoom sur un genre

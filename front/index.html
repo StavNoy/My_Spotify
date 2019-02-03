@@ -24,7 +24,7 @@
     <script src="https://code.angularjs.org/1.7.6/angular-route.min.js"></script>
 
     <!-- JS -->
-    <script src="./app/app.js"></script>
+    <script src="./src/app.js"></script>
 </head>
 
 <body ng-app="MySpotify">
@@ -66,7 +66,8 @@
                                     <div class="form-group">
                                         <label class="text-input" for="genre">Genre : </label>
                                         <select name="genre" id="genre">
-                                            <option value="id">genreName</option>
+                                            <option></option>
+                                            <option value="{{genre.id}}" ng-repeat="genre in genres">{{genre.name}}</option>
                                         </select>
                                     </div>
                                      <button type="submit" class="btn btn-primary mb-2">Search</button>
