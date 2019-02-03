@@ -95,6 +95,10 @@ body {
     margin-top: 2em;
 }
 
+.album-item-genre {
+    padding-right: .5em;
+}
+
 .album-track-item:first-child {
     border-top:1px solid #a1a1a1;
     border-bottom:1px solid #a1a1a1;
