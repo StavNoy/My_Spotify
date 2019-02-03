@@ -5,7 +5,7 @@ const app = angular.module('MySpotify', ['ngRoute']);
 app.config(($routeProvider) => {
 
     $routeProvider
-        .when('/', {templateUrl: './views/home.html', controller: 'HomeCtrl'})
+        .when('/home', {templateUrl: './views/home.html', controller: 'HomeCtrl'})
         // album routes
         .when('/albums', {templateUrl: './views/albums.html', controller: 'AlbumsCtrl'})
         .when('/album/:id', {templateUrl: './views/album.html', controller: 'AlbumCtrl'})
@@ -17,7 +17,7 @@ app.config(($routeProvider) => {
         .when('/genre/:id', {templateUrl: './views/genre.html', controller: 'GenreCtrl'})
 
         .when('/result', {templateUrl: './views/result.html', controller: 'ResultCtrl'})
-        .otherwise({redirectTo : '/'});
+        .otherwise({redirectTo : '/home'});
 });
 
 
@@ -38,7 +38,6 @@ app.controller('HomeCtrl', function ($scope, $http) {
         url: `../back/reception.php?request=albums&start=random&limit=8`
     }).then(function successCallback(res) {
         $scope.random = res.data.data;
-        console.log($scope.random);
     });
 });
 
@@ -77,13 +76,13 @@ app.controller('ArtistCtrl', function ($scope, $http, $routeParams) {
     });
 });
 
-// List artist
+// List genre
 app.controller('GenresCtrl', function ($scope, $http) {
 
 
 });
 
-// Zoom sur un artist
+// Zoom sur un genre
 app.controller('GenreCtrl', function ($scope, $http, $routeParams) {
 
     
