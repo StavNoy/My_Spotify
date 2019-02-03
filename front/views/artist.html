@@ -15,15 +15,17 @@
             <p>{{artist.bio}}</p>
         </div>
         <div class="row" ng-repeat="album in artist.albums">
-            <a href="#!/albums/{{album.id}}"><img class="album-item-pic" src="{{album.cover_small}}" alt="Album_pic"></a>
-            <div class="offset-1">
-                <h5>{{album.name}}</h5>
-                <p>Artist : <a href="#!/artist/{{album.artist_id}}">{{album.name}}</a></p>
-                <div>Genre : 
-                    <a class="album-item-genre" ng-repeat="genre in album.genre" href="#!/genre/{{genre.id}}">{{genre.name}}</a>
+            <div class="col-12">
+                <a href="#!/albums/{{album.id}}"><img class="album-item-pic" src="{{album.cover_small}}" alt="Album_pic"></a>
+                <div class="offset-1">
+                    <h5>{{album.name}}</h5>
+                    <p>Artist : <a href="#!/artist/{{album.artist_id}}">{{album.name}}</a></p>
+                    <div>Genre : 
+                        <a class="album-item-genre" ng-repeat="genre in album.genre" href="#!/genre/{{genre.id}}">{{genre.name}}</a>
+                    </div>
+                    <p>Popularity : {{album.popularity}}</p>
+                    <p>Release : {{album.release_date}}</p>
                 </div>
-                <p>Popularity : {{album.popularity}}</p>
-                <p>Release : {{album.release_date}}</p>
             </div>
         </div>
     </div>
