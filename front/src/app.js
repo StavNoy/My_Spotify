@@ -53,7 +53,7 @@ app.controller('AlbumCtrl', function ($scope, $http, $routeParams) {
 
     $http({
         method: 'GET',
-        url: `../back/reception.php?request=albums&id=${$routeParams.id
+        url: `../back/reception.php?request=albums&id=${$routeParams.id}`
     }).then(function successCallback(res) {
         $scope.album = res.data.data;
     }); 
@@ -77,7 +77,7 @@ app.controller('ArtistCtrl', function ($scope, $http, $routeParams) {
     });
 });
 
-// List artist
+// List genres
 app.controller('GenresCtrl', function ($scope, $http) {
 
 

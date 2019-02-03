@@ -9,13 +9,13 @@
 			{
 				return self::retParamErr('start and/or limit');
 			}
-			$sth = $pdo->prepare('SELECT id, name, COUNT(album_id) FROM genres JOIN genres_albums ON genres.id = genres_albums.genre_id GROUP BY genre_id');
+			$sth = $pdo->query('SELECT id, name, COUNT(album_id) AS `albums_number` FROM genres JOIN genres_albums ON genres.id = genres_albums.genre_id GROUP BY genre_id');
 			if (!$sth)
 			{
 				return self::retQuerryErr();
 			}
 			$genres = $sth->fetchAll();
-			if ($genres)
+			if (!$genres)
 			{
 				return self::retNoRes();
 			}
