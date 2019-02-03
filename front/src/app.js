@@ -29,8 +29,7 @@ app.controller('HomeCtrl', function ($scope, $http) {
         method: 'GET',
         url: `../back/reception.php?request=albums&start=random&limit=8`
     }).then(function successCallback(res) {
-        $scope.albums = res.data.data;
-        console.log($scope.albums)
+        $scope.random = res.data.data;
     });
 });
 

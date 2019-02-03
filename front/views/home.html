@@ -1,6 +1,6 @@
 <div id="random-album-content" class="row">
 
-    <div class="shadow random-album-item col-md-4" np-repeat="album in albums">
+    <div class="shadow random-album-item col-md-5" ng-repeat="album in random">
         <div class="random-album-item-content">
             <div class="row">
                 <a href="#!/album/{{album.id}}"><img class="random-album-item-pic" src="{{album.cover_small}}" alt="Album_pic"></a>
@@ -14,5 +14,7 @@
             </div>
         </div>
     </div>
+
+
 
 </div>
