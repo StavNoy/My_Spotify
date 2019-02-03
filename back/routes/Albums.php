@@ -88,7 +88,7 @@
 		 */
 		private static function addTracks(PDO $pdo, array &$album): bool
 		{
-			$sth = $pdo->query('SELECT id, track_no, name, duration FROM tracks WHERE album_id = ' . $album['id']);
+			$sth = $pdo->query('SELECT id, track_no, name, duration, mp3 FROM tracks WHERE album_id = ' . $album['id']);
 			if (!$sth)
 			{
 				return FALSE;
