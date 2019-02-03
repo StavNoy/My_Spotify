@@ -211,3 +211,11 @@ body {
 .genre-item p {
     margin: 0;
 }
+
+.genre-item a:hover {
+    text-decoration: none !important;
+}
+
+.genre-item  a h5:hover {
+    color:  #4e00df !important;
+}
