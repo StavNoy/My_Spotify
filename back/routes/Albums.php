@@ -2,8 +2,9 @@
 
 	class Albums extends Route
 	{
-		private const LIST_QUERY = "SELECT al.id, artist_id, al.name, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
+		private const LIST_QUERY = "SELECT al.id, artist_id, al.name, ar.name AS `artist_name`, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
 									'FROM albums al JOIN tracks t ON al.id = t.album_id ' .
+									'JOIN artists ar ON al.artist_id = ar.id ' .
 									'GROUP BY t.album_id ';
 
 		private const SINGLE_QUERY = "SELECT al.id, artist_id, ar.name AS `artist_name`, al.name, cover, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity FROM albums al JOIN artists ar ON al.artist_id = ar.id WHERE al.id = ";
