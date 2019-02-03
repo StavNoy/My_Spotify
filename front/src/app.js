@@ -231,7 +231,7 @@ app.controller('ArtistsCtrl', function ($scope, $http) {
 			url: `../back/reception.php?request=artistes&limit=${$scope.limit}&start=${$scope.start}`
 		}).then(function successCallback(res) {
 			$scope.artists = res.data.status === 200 ? $scope.artists.concat(res.data.data) : null;
-			if (! ($scope.albums.length % $scope.limit)) {
+			if (! ($scope.artists.length % $scope.limit)) {
 				$scope.start += $scope.limit;
 			} else {
 				$scope.more = false;
