@@ -95,6 +95,9 @@ app.controller('AlbumCtrl', function ($scope, $http, $routeParams) {
             song = new Audio(songUrl);
             song.play();
         }
+        if (action === 'continue' && song) {
+            song.play();
+        }
         if (action === 'pause' && song) {
             song.pause();
         }
