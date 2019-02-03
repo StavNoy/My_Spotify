@@ -27,7 +27,12 @@ app.config(($routeProvider) => {
 // Header nav 
 app.controller('HeaderNavCtrl', function ($scope, $http) {
 
-
+    // $http({
+    //     method: 'GET',
+    //     url: `../back/reception.php?request=genres`
+    // }).then(function successCallback(res) {
+    //     $scope.random = res.data.data;
+    // });
 });
 
 // Home page
