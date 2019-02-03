@@ -47,7 +47,10 @@
 		 */
 		private static function addAlbums(PDO $pdo, array &$artist): bool
 		{
-			$sth = $pdo->query('SELECT id, name FROM albums WHERE artist_id = ' . $artist['id']);
+			$sth = $pdo->query("SELECT al.id, artist_id, al.name, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
+			'FROM albums al JOIN tracks t ON al.id = t.album_id ' .
+			'WHERE artist_id = ' . $artist['id'] . ' ' .
+			'GROUP BY t.album_id ');
 			if (!$sth)
 			{
 				return FALSE;
