@@ -50,7 +50,7 @@
                         <li class="nav-item dropdown">
                             <div class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</div>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <form class="dropdown-item" action="#!/result">
+                                <form class="dropdown-item" ng-model="searchForm">
                                     <div class="form-group">
                                         <label class="text-input" for="artist">Artist : </label>
                                         <input type="text" class="form-control form-control-sm" id="artist" placeholder="Artist Name">
@@ -70,7 +70,7 @@
                                             <option value="{{genre.id}}" ng-repeat="genre in genres">{{genre.name}}</option>
                                         </select>
                                     </div>
-                                     <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                     <button type="button" class="btn btn-primary mb-2">Search</button>
                                 </form>
                             </div>
                         </li>

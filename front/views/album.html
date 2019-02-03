@@ -14,13 +14,18 @@
         </div>
         <div class="album-track-content">
             <div class="row album-track-item" ng-repeat="track in album.tracks">
-                <svg class="album-track-play" viewBox="0 0 200 200" alt="Play video">
+                <svg class="album-track-play" viewBox="0 0 200 200" alt="Play_song_button" ng-click="musicPlayer('play', track.mp3)">
                     <circle cx="100" cy="100" r="90" fill="none" stroke-width="15" stroke="#000"/>
                     <polygon points="70, 55 70, 145 145, 100" fill="#000"/>
                 </svg>
                 <p class="album-track-duration">{{track.duration}}</p>
-                <a href="#!/track/{{track.id}}" class="album-track-title">{{track.name}}</a>
-                <audio class="album-track-timeline" controls src="{{track.mp3}}"></audio>
+                <a class="album-track-title">{{track.name}}</a>
+                
+                <div class="music-player">
+                    <button ng-click="musicPlayer('continue')">continue</button>
+                    <button ng-click="musicPlayer('pause')">pause</button>
+                    <button ng-click="musicPlayer('stop')">stop</button>
+                </div>
             </div>
         </div>
     </div>
