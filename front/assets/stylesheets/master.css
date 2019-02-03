@@ -186,3 +186,19 @@ body {
     padding: .5em 0;
     border-bottom:1px solid #a1a1a1;
 }
+
+/* Genre */
+
+.genre-content {
+    margin-top: 2em;
+}
+
+.genre-item {
+    border: 1px solid #a1a1a1;
+    background-color: #e6e6e6;
+    padding: .7em;
+}
+
+.genre-item p {
+    margin: 0;
+}
