@@ -141,7 +141,6 @@ app.controller('GenreCtrl', function ($scope, $http, $routeParams) {
 
 // Result search
 
-});
 
 // Home page
 app.controller('HomeCtrl', function ($scope, $http) {
