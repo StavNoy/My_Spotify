@@ -1,21 +1,7 @@
-// rooter.get('url/albums/:id')
-
-// url = `api.url/reception.php?request=albums&start=random&limit=10`;
-
-// $.ajax({
-//     type: "GET",
-//     url: url,
-//     dataType: "json",
-
-//     success: function (res) {
-        
-//     }
-// });
-
 const app = angular.module('MySpotify', ['ngRoute']);
 
 
-// ROOT
+// ROUTE
 app.config(($routeProvider) => {
 
     $routeProvider
@@ -49,17 +35,9 @@ app.controller('AlbumsCtrl', function ($scope, $http) {
 });
 
 // Zoom sur un album
-app.controller('AlbumCtrl', function ($scope, $http, $routeParams) {
+app.controller('AlbumCtrl', function ($scope, $http, $routeParams, AlbumFac) {
 
-    const url = `../back/reception.php?request=albums&id=${$routeParams.id}`;
-
-    $http({
-        method: 'GET',
-        url: url
-    }).then(function successCallback(res) {
-        $scope.album = res.data.data;
-        console.log(res.data.data);
-    });
+    
 });
 
 // Zoom sur un artist
@@ -79,5 +57,17 @@ app.controller('ArtistCtrl', function ($scope, $http, $routeParams) {
 
 app.factory('AlbumFac', () => {
 
-    
+    return {
+
+        getAlbums: (id) => {
+
+            $http({
+                method: 'GET',
+                url: `../back/reception.php?request=albums&id=${$routeParams.id}`
+            }).then(function successCallback(res) {
+                return res.data.data;
+                console.log(res.data.data);
+            });
+        }        
+    }
 });

@@ -41,4 +41,28 @@
 			}
 			return " LIMIT $start, $limit ";
 		}
+
+		/*
+		private static function makeLimitString(array $inputs): ?string
+		{
+			$str = ''
+			$limit = (int) ($inputs['limit'] ?? 10);
+			if ($limit <= 0)
+			{
+				return NULL;
+			}
+			if (isset($inputs['start']) && $inputs['start'] === 'random')
+			{
+				return " ORDER BY RAND() LIMIT $limit ";
+			}
+			$start = (int) ($inputs['start'] ?? 0);
+			if ($start < 0)
+			{
+				return NULL;
+			}
+			return " LIMIT $start, $limit ";
+		}*/
 	}
+
+
+
