@@ -62,8 +62,7 @@
 				return self::makeLimitString($inputs);
 			}
 			$limit = (int) ($inputs['limit'] ?? 10);
-			$start = rand(1, $pdo->query('SELECT COUNT(*) FROM albums')->fetchColumn() - $limit);
-			return " LIMIT $start, $limit ";
+			return " ORDER BY RAND() LIMIT $limit ";
 		}
 
 
