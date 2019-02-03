@@ -17,14 +17,7 @@
 	"bio": "bla bla",
 	"photo": "http://some.url/pat/to/photo.jpg",
 	"albums": [
-	  {
-		"id": 7,
-		"name": "bla"
-	  },
-	  {
-		"id": 75,
-		"name": "bla 2: the blabenning"
-	  }
+	  //see list
 	]
   }
 

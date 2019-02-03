@@ -15,7 +15,7 @@
 const app = angular.module('MySpotify', ['ngRoute']);
 
 
-// ROOT
+// ROUTE
 app.config(($routeProvider) => {
 
     $routeProvider
@@ -33,17 +33,34 @@ app.config(($routeProvider) => {
 app.controller('HeaderNavCtrl', function ($scope, $http) {
 
 
+
 });
 
 // Home page
 app.controller('HomeCtrl', function ($scope, $http) {
 
-    
+	const url = `../back/reception.php?request=albums&start=random`;
+
+	$http({
+		method: 'GET',
+		url: url
+	}).then(function successCallback(res) {
+		$scope.album = res.data.data;
+	});
+
 });
 
 // List de tout les album
 app.controller('AlbumsCtrl', function ($scope, $http) {
 
+	const url = `../back/reception.php?request=albums`;
+
+	$http({
+		method: 'GET',
+		url: url
+	}).then(function successCallback(res) {
+		$scope.album = res.data.data;
+	});
     
 });
 

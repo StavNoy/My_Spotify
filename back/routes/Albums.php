@@ -51,7 +51,7 @@
 				$queryStr .= ' HAVING artist_id = ' . $inputs['artist_id'];
 			}
 			$limitStr = self::handleLimitString($pdo, $inputs);
-			return ($limitStr === NULL) ? $queryStr . $limitStr : NULL;
+			return ($limitStr !== NULL) ? $queryStr . $limitStr : NULL;
 		}
 
 
