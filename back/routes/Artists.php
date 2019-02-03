@@ -6,7 +6,7 @@
 		public static function main(PDO $pdo, array $inputs): array
 		{
 			$queryStr = self::makeQueryStr($inputs);
-			if (!$inputs)
+			if (!$queryStr)
 			{
 				return self::retParamErr();
 			}
@@ -37,7 +37,7 @@
 				return ((int) $inputs['id']) ? ('SELECT * FROM artists WHERE id = ' . (int) $inputs['id']) : NULL;
 			}
 			$limitStr = self::makeLimitString($inputs);
-			return ($limitStr === NULL) ? "SELECT id, name, description, photo FROM artists $limitStr" : NULL;
+			return ($limitStr !== NULL) ? "SELECT id, name, description, photo FROM artists $limitStr" : NULL;
 		}
 
 

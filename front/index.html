@@ -24,7 +24,7 @@
     <script src="https://code.angularjs.org/1.7.6/angular-route.min.js"></script>
 
     <!-- JS -->
-    <script src="./src/app.js/"></script>
+    <script src="./src/app.js"></script>
 </head>
 
 <body ng-app="MySpotify">
@@ -48,9 +48,9 @@
                             <a class="nav-link text-light" href="#!/genres">Genre</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+                            <div class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</div>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <form class="dropdown-item">
+                                <form class="dropdown-item" action="#!/result">
                                     <div class="form-group">
                                         <label class="text-input" for="artist">Artist : </label>
                                         <input type="text" class="form-control form-control-sm" id="artist" placeholder="Artist Name">
@@ -66,7 +66,8 @@
                                     <div class="form-group">
                                         <label class="text-input" for="genre">Genre : </label>
                                         <select name="genre" id="genre">
-                                            <option value="id">genreName</option>
+                                            <option></option>
+                                            <option value="{{genre.id}}" ng-repeat="genre in genres">{{genre.name}}</option>
                                         </select>
                                     </div>
                                      <button type="submit" class="btn btn-primary mb-2">Search</button>

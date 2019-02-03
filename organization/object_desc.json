@@ -116,7 +116,7 @@
 	Search:
 
 		return {
-			type: 'album' | 'artist' | 'track',
+			type: 'albums' | 'artists' | 'tracks',
 			status: 200 | 422 | /*etc*//*,
 			data: [{},{}]  //depends
 		}

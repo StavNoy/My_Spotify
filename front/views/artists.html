@@ -1,0 +1,21 @@
+<div id="artists" class="row">
+
+	<div class="row">
+		<div class="shadow col-12" ng-repeat="artist in artists">
+			<div class="random-album-item-content">
+				<div class="row">
+					<a href="#!/artist/{{artist.id}}"><img class="random-album-item-pic" src="{{artist.photo}}" alt="Artist_pic"></a>
+					<div class="offset-1">
+						<h5>{{artist.name}}</h5>
+						<p>{{artist.description}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button ng-click="loadRes()" ng-if="more" type="button" class="btn btn-primary btn-block" >load more results</button>
+
+	<div ng-if="!albums.length">No results</div>
+
+</div>

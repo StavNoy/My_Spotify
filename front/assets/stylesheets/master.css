@@ -8,7 +8,10 @@ body {
     box-shadow:-1px 1px 10px 1px rgba(0,0,0,.1);
 }
 
-
+.nav-link:hover {
+    cursor: pointer;
+    color: #cbd3da !important;
+}
 
 /* HEADER */
 
@@ -193,10 +196,16 @@ body {
     margin-top: 2em;
 }
 
+#genre-list h4 {
+    margin: 2em auto;
+    text-align: center;
+}
+
 .genre-item {
     border: 1px solid #a1a1a1;
     background-color: #e6e6e6;
     padding: .7em;
+    margin: .5em 1em;
 }
 
 .genre-item p {

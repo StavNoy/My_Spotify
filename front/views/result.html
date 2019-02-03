@@ -1,0 +1,54 @@
+<div id="albums" class="row">
+	<div class="row">
+		<div class="shadow random-album-item col-12" ng-repeat="album in albums">
+			<div class="random-album-item-content">
+				<div class="row">
+					<a href="#!/album/{{album.id}}"><img class="random-album-item-pic" src="{{album.cover_small}}" alt="Album_pic"></a>
+					<div class="offset-1">
+						<h5>{{album.name}}</h5>
+						<p>Artist : <a href="#!/artist/{{album.artist_id}}">{{album.artist_name}}</a></p>
+						<p>Popularity : {{album.popularity}}</p>
+						<p>Tracks : {{album.tracks_number}}</p>
+						<p>Release : {{album.release_date}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="artists" class="row">
+
+	<div class="row">
+		<div class="shadow col-12" ng-repeat="artist in artists">
+			<div class="random-album-item-content">
+				<div class="row">
+					<a href="#!/artist/{{artist.id}}"><img class="random-album-item-pic" src="{{artist.photo}}" alt="Artist_pic"></a>
+					<div class="offset-1">
+						<h5>{{artist.name}}</h5>
+						<p>{{artist.description}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="tracks" class="row">
+	<div class="album-track-content">
+		<div class="row album-track-item" ng-repeat="track in tracks">
+			<svg class="album-track-play" viewBox="0 0 200 200" alt="Play video">
+				<circle cx="100" cy="100" r="90" fill="none" stroke-width="15" stroke="#000"/>
+				<polygon points="70, 55 70, 145 145, 100" fill="#000"/>
+			</svg>
+			<p class="album-track-duration">{{track.duration}}</p>
+			<a href="#!/track/{{track.id}}" class="album-track-title">{{track.name}}</a>
+			<audio class="album-track-timeline" controls src="{{track.mp3}}"></audio>
+		</div>
+	</div>
+</div>
+
+
+<button ng-click="loadRes()" ng-if="more" type="button" class="btn btn-primary btn-block" >load more results</button>
+
+<div ng-if="!artists.length && !albums.length && !tracks.length">No results</div>

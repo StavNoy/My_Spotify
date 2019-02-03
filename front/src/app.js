@@ -27,12 +27,18 @@ app.config(($routeProvider) => {
 // Header nav 
 app.controller('HeaderNavCtrl', function ($scope, $http) {
 
-    // $http({
-    //     method: 'GET',
-    //     url: `../back/reception.php?request=genres`
-    // }).then(function successCallback(res) {
-    //     $scope.random = res.data.data;
-    // });
+    $http({
+        method: 'GET',
+        url: `../back/reception.php?request=genres`
+    }).then(function successCallback(res) {
+        $scope.genres = res.data.data;
+    });
+
+	let storage = null;
+
+	$scope.search = () => {
+
+	};
 });
 
 // Home page
@@ -87,6 +93,27 @@ app.controller('AlbumCtrl', function ($scope, $http, $routeParams) {
 app.controller('ArtistsCtrl', function ($scope, $http) {
 
 
+	$scope.start = 0;
+	$scope.limit = 10;
+	$scope.more = true;
+	$scope.artists = [];
+
+	$scope.loadRes = () => {
+		$http({
+			method: 'GET',
+			url: `../back/reception.php?request=artistes&limit=${$scope.limit}&start=${$scope.start}`
+		}).then(function successCallback(res) {
+			$scope.artists = res.data.status === 200 ? $scope.artists.concat(res.data.data) : null;
+			if (! ($scope.albums.length % $scope.limit)) {
+				$scope.start += $scope.limit;
+			} else {
+				$scope.more = false;
+			}
+		});
+	};
+
+	$scope.loadRes();
+
 });
 
 // Zoom sur un artist
@@ -97,14 +124,18 @@ app.controller('ArtistCtrl', function ($scope, $http, $routeParams) {
         url: `../back/reception.php?request=artistes&id=${$routeParams.id}`
     }).then(function successCallback(res) {
         $scope.artist = res.data.data;
-        console.log(res.data.data);
     });
 });
 
 // List genres
 app.controller('GenresCtrl', function ($scope, $http) {
 
-
+    $http({
+        method: 'GET',
+        url: `../back/reception.php?request=genres`
+    }).then(function successCallback(res) {
+        $scope.genres = res.data.data;
+    });
 });
 
 // Zoom sur un genre
@@ -116,11 +147,44 @@ app.controller('GenreCtrl', function ($scope, $http, $routeParams) {
 // Result search
 app.controller('ResultCtrl', function ($scope, $http, $routeParams) {
 
-	$http({
-		method: 'GET',
-		url: `../back/reception.php?request=search${$routeParams}`,
-	}).then(function successCallback(res) {
-		$scope.results = res.data.data;
-	});
+	console.log($http);
+
+	$scope.start = 0;
+	$scope.limit = 10;
+	$scope.more = true;
+	$scope.artists = [];
+	$scope.albums = [];
+	$scope.tracks = [];
+
+	function whichArr(str) {
+		switch (str) {
+			case 'artists':
+				return $scope.artists;
+			case 'albums':
+				return $scope.albums;
+			case 'tracks':
+				return $scope.tracks;
+		}
+	}
+
+	$scope.loadRes = () => {
+		$http({
+			method: 'GET',
+			url: `../back/reception.php?request=search&&limit=${$scope.limit}&start=${$scope.start}&${$routeParams}`,
+		}).then(function successCallback(res) {
+			if (res.data.status === 200) {
+				let resArr = whichArr(res.data.type);
+				resArr.push(...res.data.data);
+				if (! (res.length % $scope.limit)) {
+					$scope.start += $scope.limit;
+				} else {
+					$scope.more = false;
+				}
+			}
+		});
+	};
+
+	$scope.loadRes();
+
 
 });

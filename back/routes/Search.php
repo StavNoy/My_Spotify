@@ -10,19 +10,19 @@
 			if (!self::isEmpty($inputs['track']))
 			{
 				$res = self::searchTracks($pdo, $inputs['track']);
-				$res['type'] = 'track';
+				$res['type'] = 'tracks';
 				return $res;
 			}
 			if ($album || $genre)
 			{
 				$res = self::searchAlbums($pdo, $album, $artist, $genre);
-				$res['type'] = 'album';
+				$res['type'] = 'albums';
 				return $res;
 			}
 			if ($artist)
 			{
 				$res = self::searchArtist($pdo, $artist);
-				$res['type'] = 'artist';
+				$res['type'] = 'artists';
 				return $res;
 			}
 			return self::retParamErr('no params given');
