@@ -9,17 +9,23 @@
 			$genre = (int) ($inputs['genre'] ?? 0);
 			if (!self::isEmpty($inputs['track']))
 			{
-				return self::searchTracks($pdo, $inputs['track']);
+				$res = self::searchTracks($pdo, $inputs['track']);
+				$res['type'] = 'track';
+				return $res;
 			}
 			if ($album || $genre)
 			{
-				return self::searchAlbums($pdo, $album, $artist, $genre);
+				$res = self::searchAlbums($pdo, $album, $artist, $genre);
+				$res['type'] = 'album';
+				return $res;
 			}
 			if ($artist)
 			{
-				return self::searchArtist($pdo, $artist);
+				$res = self::searchArtist($pdo, $artist);
+				$res['type'] = 'artist';
+				return $res;
 			}
-			return self::retParamErr();
+			return self::retParamErr('no params given');
 		}
 
 

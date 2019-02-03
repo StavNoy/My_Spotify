@@ -84,7 +84,7 @@
 	"mp3": "url",
 	"album_id": 3,
 	"album_name": "fef",
-	"album_cover_small": "http://other.url/img.png"
+	"album_cover_small": "http://other.url/img.png",
 	"artist_id": 34,
 	"artist_name": "feknwfe"
   }
@@ -114,6 +114,12 @@
 
 /*
 	Search:
+
+		return {
+			type: 'album' | 'artist' | 'track',
+			status: 200 | 422 | /*etc*//*,
+			data: [{},{}]  //depends
+		}
 
 	  fields:
 		genre;  id
