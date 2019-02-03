@@ -28,6 +28,7 @@
 	{
 	  "id": 3,
 	  "artist_id": 6,
+	  "artist_name": "jcycvy",
 	  "name": "bla",
 	  "cover_small": 'http://other.url/img.png',
 	  "release_date": '1234/12/12',
