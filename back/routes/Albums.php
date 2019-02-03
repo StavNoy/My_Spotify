@@ -6,7 +6,7 @@
 									'FROM albums al JOIN tracks t ON al.id = t.album_id ' .
 									'GROUP BY t.album_id ';
 
-		private const SINGLE_QUERY = "SELECT al.id, artist_id, al.name, cover, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity FROM albums al WHERE al.id = ";
+		private const SINGLE_QUERY = "SELECT al.id, artist_id, ar.name AS `artist_name`, al.name, cover, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity FROM albums al JOIN artists ar ON al.artist_id = ar.id WHERE al.id = ";
 
 		public static function main(PDO $pdo, array $inputs): array
 		{

@@ -81,7 +81,7 @@ app.controller('ArtistCtrl', function ($scope, $http, $routeParams) {
     });
 });
 
-// List genre
+// List genres
 app.controller('GenresCtrl', function ($scope, $http) {
 
 
