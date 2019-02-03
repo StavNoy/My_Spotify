@@ -6,7 +6,7 @@
                 <a href="#!/album/{{album.id}}"><img class="random-album-item-pic" src="{{album.cover_small}}" alt="Album_pic"></a>
                 <div class="offset-1">
                     <h5>{{album.name}}</h5>
-                    <a href="#!/artist/{{album.artist_id}}">Artist</a>
+                    <p>Artist : <a href="#!/artist/{{album.artist_id}}">{{album.artist_name}}</a></p> 
                     <p>Popularity : {{album.popularity}}</p>
                     <p>Tracks : {{album.tracks_number}}</p>
                     <p>Release : {{album.release_date}}</p>
