@@ -40,7 +40,7 @@ app.controller('HomeCtrl', function ($scope, $http) {
 
     $http({
         method: 'GET',
-        url: `../back/reception.php?request=albums&start=random&limit=8`
+        url: `../back/reception.php?request=albums&start=random&limit=4`
     }).then(function successCallback(res) {
         $scope.random = res.data.data;
     });
@@ -81,6 +81,29 @@ app.controller('AlbumCtrl', function ($scope, $http, $routeParams) {
     }).then(function successCallback(res) {
         $scope.album = res.data.data;
     }); 
+
+    let song = null;
+
+    $scope.musicPlayer = (action ,songUrl = null) => {
+        
+        if (action === 'play' && songUrl !== null) {
+            if (song !== null) {
+                song.pause();
+                song.currentTime = 0;
+                song = null;
+            }
+            song = new Audio(songUrl);
+            song.play();
+        }
+        if (action === 'pause' && song) {
+            song.pause();
+        }
+        if (action === 'stop' && song) {
+            song.pause();
+            song.currentTime = 0;
+        }
+
+    }
 });
 
 // List artist
