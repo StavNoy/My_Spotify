@@ -46,7 +46,7 @@
 
 		private static function searchAlbums(PDO $pdo, string $album, $artist = FALSE, int $genre = 0): array
 		{
-			$sttmnt = "SELECT al.id, artist_id, al.name, ar.name AS `artist_name` cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
+			$sttmnt = "SELECT al.id, artist_id, al.name, ar.name AS `artist_name`, cover_small, FROM_UNIXTIME(release_date, '%Y-%m-%d') AS `release_date`, popularity, COUNT(t.id) AS `tracks_number` " .
 				'FROM albums al JOIN tracks t ON al.id = t.album_id JOIN artists ar ON al.artist_id = ar.id' ;
 			$where = ' WHERE al.name LIKE ? ';
 			$params = ["%$album%"];

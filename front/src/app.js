@@ -14,7 +14,7 @@ app.config(($routeProvider) => {
         .when('/artist/:id', {templateUrl: './views/artist.html', controller: 'ArtistCtrl'})
         // genre routes
         .when('/genres', {templateUrl: './views/genres.html', controller: 'GenresCtrl'})
-        .when('/genre/:id', {templateUrl: './views/genre.html', controller: 'GenreCtrl'})
+        .when('/genre/:id', {templateUrl: './views/genre.html', controller: 'ResultCtrl'})
 
         .when('/result', {templateUrl: './views/result.html', controller: 'ResultCtrl'})
         .otherwise({redirectTo : '/home'});
@@ -49,6 +49,26 @@ app.controller('HomeCtrl', function ($scope, $http) {
 // List album
 app.controller('AlbumsCtrl', function ($scope, $http) {
 
+	$scope.start = 0;
+	$scope.limit = 10;
+	$scope.more = true;
+	$scope.albums = [];
+
+	$scope.loadRes = () => {
+		$http({
+			method: 'GET',
+			url: `../back/reception.php?request=albums&limit=${$scope.limit}&start=${$scope.start}`
+		}).then(function successCallback(res) {
+			$scope.albums = res.data.status === 200 ? $scope.albums.concat(res.data.data) : null;
+			if (! ($scope.albums.length % $scope.limit)) {
+				$scope.start += $scope.limit;
+			} else {
+				$scope.more = false;
+			}
+		});
+	};
+
+	$scope.loadRes();
 
 });
 
@@ -94,7 +114,13 @@ app.controller('GenreCtrl', function ($scope, $http, $routeParams) {
 });
 
 // Result search
-app.controller('ResultCtrl', function ($scope, $http) {
+app.controller('ResultCtrl', function ($scope, $http, $routeParams) {
 
+	$http({
+		method: 'GET',
+		url: `../back/reception.php?request=search${$routeParams}`,
+	}).then(function successCallback(res) {
+		$scope.results = res.data.data;
+	});
 
 });
