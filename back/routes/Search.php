@@ -9,15 +9,15 @@
 			$genre = (int) ($inputs['genre'] ?? 0);
 			if (!self::isEmpty($inputs['track']))
 			{
-				return self::searchTracks($pdo, $inputs);
+				return self::searchTracks($pdo, $inputs['track']);
 			}
-			if ($album || ($genre && !$artist))
+			if ($album || $genre)
 			{
 				return self::searchAlbums($pdo, $album, $artist, $genre);
 			}
 			if ($artist)
 			{
-				return self::searchArtist($pdo, $artist, $genre);
+				return self::searchArtist($pdo, $artist);
 			}
 			return self::retParamErr();
 		}
@@ -49,9 +49,10 @@
 			return self::prepExecFetch($pdo, $sttmntFull, $params);
 		}
 
-		private static function searchArtist(PDO $pdo, string $artist, int $genre = 0): array
+		private static function searchArtist(PDO $pdo, string $artist): array
 		{
-
+			$sttmnt = 'SELECT id, name, description, photo FROM artists WHERE name LIKE ? ';
+			return self::prepExecFetch($pdo, $sttmnt, ["%$artist%"]);
 		}
 
 		private static function handleFields(string &$where, array &$params, string &$sttmnt, $genre = 0, $artist = FALSE, $album = FALSE): void

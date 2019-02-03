@@ -127,6 +127,6 @@
 
 	  results:
 		track [any] -> track
-		genre || album [artist, genre] -> albums
-		artist [genres] -> artist
+		genre || album [artist] -> albums
+		artist -> artist
 */
