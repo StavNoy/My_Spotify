@@ -175,3 +175,14 @@ body {
 .artist-bio {
     margin: 2em auto;
 }
+
+.artist-album:first-child {
+    border-top:1px solid #a1a1a1;
+    border-bottom:1px solid #a1a1a1;
+}
+
+.artist-album {
+    margin: .5em auto;
+    padding: .5em 0;
+    border-bottom:1px solid #a1a1a1;
+}

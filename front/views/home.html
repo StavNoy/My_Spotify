@@ -1,105 +1,15 @@
 <div id="random-album-content" class="row">
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/1"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="shadow random-album-item col-md-4">
+    <div class="shadow random-album-item col-md-4" np-repeat="album in albums">
         <div class="random-album-item-content">
             <div class="row">
-                <a href="#!/album/2"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
+                <a href="#!/album/{{album.id}}"><img class="random-album-item-pic" src="{{album.cover_small}}" alt="Album_pic"></a>
                 <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/3"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/4"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/5"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/6"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/7"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shadow random-album-item col-md-4">
-        <div class="random-album-item-content">
-            <div class="row">
-                <a href="#!/album/8"><img class="random-album-item-pic" src="./assets/images/album_cover_200.png" alt="Album_pic"></a>
-                <div class="offset-1">
-                    <h5>Album title</h5>
-                    <p>Artist name</p>
-                    <p>Popularity : </p>
-                    <p>tracks nbr</p>
+                    <h5>{{album.name}}</h5>
+                    <a href="#!/artist/{{album.artist_id}}">Artist</a>
+                    <p>Popularity : {{album.popularity}}</p>
+                    <p>Tracks : {{album.tracks_number}}</p>
+                    <p>Release : {{album.release_date}}</p>
                 </div>
             </div>
         </div>
